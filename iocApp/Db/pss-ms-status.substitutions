@@ -1,0 +1,13 @@
+pattern	{PLC		LOCATION	STATUS		TAG}
+		{MS_PSS_PLC	OH-S		Open		OH_Small_PSS_EPICS_State.OPEN}
+		{MS_PSS_PLC	OH-S		Secured		OH_Small_PSS_EPICS_State.SECURED}
+		{MS_PSS_PLC	OH-S		Ready		OH_Small_PSS_EPICS_State.SEARCH_RDY}
+		{MS_PSS_PLC	OH-S		Progress	OH_Small_PSS_EPICS_State.SEARCH_ON}
+		{MS_PSS_PLC	OH-L		Open		OH_Large_PSS_EPICS_State.OPEN}
+		{MS_PSS_PLC	OH-L		Secured		OH_Large_PSS_EPICS_State.SECURED}
+		{MS_PSS_PLC	OH-L		Ready		OH_Large_PSS_EPICS_State.SEARCH_RDY}
+		{MS_PSS_PLC	OH-L		Progress	OH_Large_PSS_EPICS_State.SEARCH_ON}
+		{MS_PSS_PLC	EH			Open		EH_PSS_EPICS_State.OPEN}
+		{MS_PSS_PLC	EH			Secured		EH_PSS_EPICS_State.SECURED}
+		{MS_PSS_PLC	EH			Ready		EH_PSS_EPICS_State.SEARCH_RDY}
+		{MS_PSS_PLC	EH			Progress	EH_PSS_EPICS_State.SEARCH_ON}

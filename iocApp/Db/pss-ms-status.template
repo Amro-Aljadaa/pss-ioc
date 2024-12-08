@@ -1,0 +1,9 @@
+record(bi, "I09-PSS-$(LOCATION):is$(STATUS)")
+{
+	field(PINI, "YES")
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@$(PLC) $(TAG) S 1")
+	field(ONAM, "$(STATUS)")
+	field(ZNAM, "Not $(STATUS)")
+}

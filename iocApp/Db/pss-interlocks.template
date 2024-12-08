@@ -1,0 +1,10 @@
+record(bi, "$(SYSTEM):isInterlock")
+{
+	field(DESC, "Reads $(DESC) PSS interlock")
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@Booster_PSS_PLC $(TAG) S 1")
+	field(PINI, "YES")
+	field(ZNAM, "INTERLOCK")    field(ZSV,  "MAJOR")
+	field(ONAM, "NO INTERLOCK") field(OSV,  "NO_ALARM")
+}

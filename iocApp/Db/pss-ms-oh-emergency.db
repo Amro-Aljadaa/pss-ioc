@@ -1,0 +1,15 @@
+record(ai, "I09-PSS-OH:getEMStatus")
+{
+	field(PINI, "YES")
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@MS_PSS_PLC OH_PSS_EPICS_EM")
+}
+
+record(ai, "I09-PSS-EH:getEMStatus")
+{
+	field(PINI, "YES")
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@MS_PSS_PLC EH_PSS_EPICS_EM")
+}

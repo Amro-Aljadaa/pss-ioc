@@ -1,0 +1,218 @@
+record(bi,  "MI-PSS-$(DEVICE):isTriggerInterlock")
+{
+	field(DESC, "Reads microtron trigger interlock")
+	field(SCAN, ".5 second")
+	field(DTYP, "EtherIP")
+	field(INP, "@$(PLC) BO_PSS_PLC_MT_INTERLOCK_S S 1")
+	field(RVAL, "0")
+	field(PINI, "YES")
+	field(ZNAM, "INTERLOCK")	field(ZSV,  "MAJOR")
+	field(ONAM, "NO INTERLOCK")     field(OSV,  "NO_ALARM")
+}
+
+record(bi,  "MI-PSS-$(DEVICE):isPowerSupplyInterlock")
+{
+	field(DESC, "Reads microtron power supply interlock")
+	field(SCAN, ".5 second")
+	field(DTYP, "EtherIP")
+	field(INP, "@$(PLC) BO_PSS_PLC_HVPS_INTERLOCK_S S 1")
+	field(RVAL, "0")
+	field(PINI, "YES")
+	field(ZNAM, "INTERLOCK")	field(ZSV,  "MAJOR")
+	field(ONAM, "NO INTERLOCK")     field(OSV,  "NO_ALARM")
+}
+
+record(bi,  "BO-PSS-$(DEVICE):isRfInterlock")
+{
+	field(DESC, "Reads booster rf interlock")
+	field(SCAN, ".5 second")
+	field(DTYP, "EtherIP")
+	field(INP, "@$(PLC) BO_PSS_PLC_BRF_INTERLOCK_S S 1")
+	field(RVAL, "0")
+	field(PINI, "YES")
+	field(ZNAM, "INTERLOCK")	field(ZSV,  "MAJOR")
+	field(ONAM, "NO INTERLOCK")     field(OSV,  "NO_ALARM")
+}
+
+#record(bi,  "BO-PSS-$(DEVICE):isGateValveInterlock")
+#{
+#	field(DESC, "Reads gate valve interlock")
+#	field(SCAN, ".5 second")
+#	field(DTYP, "EtherIP")
+#	field(INP, "@$(PLC) BO_PSS_PLC_VGV_INTERLOCK_S S 1")
+#	field(RVAL, "0")
+#	field(PINI, "YES")
+#	field(ZNAM, "INTERLOCK")	field(ZSV,  "MAJOR")
+#	field(ONAM, "NO INTERLOCK")     field(OSV,  "NO_ALARM")
+#}
+#
+#record(bi,  "BO-PSS-$(DEVICE):isExtractionKickerInterlock")
+#{
+#	field(DESC, "Reads extractin kicker interlock")
+#	field(SCAN, ".5 second")
+#	field(DTYP, "EtherIP")
+#	field(INP, "@$(PLC) BO_PSS_PLC_EXK_INTERLOCK_S S 1")
+#	field(RVAL, "0")
+#	field(PINI, "YES")
+#	field(ZNAM, "INTERLOCK")	field(ZSV,  "MAJOR")
+#	field(ONAM, "NO INTERLOCK")     field(OSV,  "NO_ALARM")
+#}
+
+record(calcout,"BO-PSS-$(DEVICE):calcTrigger")
+{
+	field(DESC, "Calc trigger")
+	field(SCAN,"1 second")
+	field(INPA, "MI-GE:isTriggerEnabled")
+	field(INPB, "1")
+	field(CALC, "(A&B==1)?1:0")
+	field(EGU, "")
+	field(PREC, "0")
+	field(FLNK, "MI-PSS-$(DEVICE):setTriggerInterlock")
+	field(OUT, "MI-PSS-$(DEVICE):setTriggerInterlock")
+}
+
+record(bo,"MI-PSS-$(DEVICE):setTriggerInterlock")
+{
+	field(DESC, "Sets trigger interlock")
+	field(DTYP, "EtherIP")
+	field(OUT, "@$(PLC) BO_PSS_CSPLC_MT_STATUS S 1")
+	field(RVAL, "0")
+	field(PINI, "NO")
+	field(ZNAM, "False")  field(ZSV, "NO_ALARM")
+	field(ONAM, "True")   field(OSV, "NO_ALARM")
+}
+
+record(calc,"BO-PS:isMagnetsOn")
+{
+	field(DESC, "One of the dc power supplies is on")
+	field(CALC, "A=8||B=8||C=8?1:0")
+	field(INPA,"BO-PS-BM:getState.VAL NPP NMS")
+	field(INPB,"BO-PS-QF:getState.VAL NPP NMS")
+	field(INPC,"BO-PS-QD:getState.VAL NPP NMS")
+	field(SCAN,".5 second")
+	field(EGU, "")
+	field(PREC, "0")
+	field (FLNK,"BO-PSS-$(DEVICE):calcBeaconsOn")
+}
+
+record(calcout,"BO-PSS-$(DEVICE):calcBeaconsOn")
+{
+	field(DESC, "Calc beacons on")
+	field(SCAN,"1 second")  
+	field(INPA, "BO-PS:isMagnetsOn")
+	field(INPB, "1")
+	field(CALC, "(A&B==1)?1:0")
+	field(EGU, "")
+	field(PREC, "0")
+	field(FLNK, "BO-PSS-$(DEVICE):setMagnetsBeaconsOn")
+	field(OUT, "BO-PSS-$(DEVICE):setMagnetsBeaconsOn")
+}
+
+record(bo, "BO-PSS-$(DEVICE):setMagnetsBeaconsOn")
+{
+	field(DESC, "Sets magnets beacons on")
+	field(DTYP, "EtherIP")
+	field(OUT, "@$(PLC) BO_PSS_CSPLC_BM_STATUS S 1")
+	field(RVAL, "0")
+	field(PINI, "NO")
+	field(ZNAM, "False")  field(ZSV, "NO_ALARM")
+	field(ONAM, "True")   field(OSV, "NO_ALARM")
+}
+
+record(calcout,"SR-PSS-$(DEVICE):calcBeamOn")
+{
+	field(DESC, "Calc beam on from dcct")
+	field(SCAN,"1 second")
+	field(INPA, "SRC01-DI-DCCT1:getDcctCurrent")
+	field(INPB, "0.1")
+	field(CALC, "(A>=B)?1:0")
+	field(EGU, "")
+	field(PREC, "0")
+	field(FLNK, "SR-PSS-$(DEVICE):setBeamOn")
+	field(OUT, "SR-PSS-$(DEVICE):setBeamOn")
+}
+
+record(bo,"SR-PSS-$(DEVICE):setBeamOn")
+{
+	field(DESC, "Sets beam on")
+	field(DTYP, "EtherIP")
+	field(OUT, "@$(PLC) SR_PSS_DCCT_ON_S S 1")
+	field(RVAL, "0")
+	field(PINI, "NO")
+	field(ZNAM, "False")  field(ZSV, "NO_ALARM")
+	field(ONAM, "True")   field(OSV, "NO_ALARM")
+}
+
+record(calcout,"SR-PSS-$(DEVICE):calcBeaconsOn")
+{
+	field(DESC, "Calc sr beacons on ")
+	field(SCAN,"1 second")
+	field(INPA, "SR-PS-BM:getStateHandler")
+	field(INPB, "2")
+	field(CALC, "(A=B)?1:0")
+	field(EGU, "")
+	field(PREC, "0")
+	field(FLNK, "SR-PSS-$(DEVICE):enableMagnetsBeacons")
+	field(OUT, "SR-PSS-$(DEVICE):enableMagnetsBeacons")
+}
+
+record(bo, "SR-PSS-$(DEVICE):enableMagnetsBeacons")
+{
+	field(DESC, "Sets magnets beacons on")
+	field(DTYP, "EtherIP")
+	field(OUT, "@$(PLC) SR_PSS_CSPLC_Magnets_STATUS S 1")
+	field(RVAL, "0")
+	field(PINI, "NO")
+	field(ZNAM, "False")  field(ZSV, "NO_ALARM")
+	field(ONAM, "True")   field(OSV, "NO_ALARM")
+}
+
+record(bi,  "SR-PSS-$(DEVICE):isRfInterlock")
+{
+	field(DESC, "Reads booster rf interlock")
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP, "@$(PLC) SR_PSS_RF_INTERLOCK_S S 1")
+	field(RVAL, "0")
+	field(PINI, "YES")
+	field(ONAM, "NO INTERLOCK")	field(OSV, "NO_ALARM")
+	field(ZNAM, "INTERLOCK")    field(ZSV, "MAJOR")
+}
+
+record(bi, "SR-PSS-$(DEVICE):isFireAlarm")
+{
+	field(DESC, "Reads fire alarm status")
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@$(PLC) Tunnel_Fire_Alarm.Fire_Alarm_Lateched")
+	field(RVAL, "0")
+	field(PINI, "YES")
+	field(ZNAM, "No Alarm")   field(ZSV, "NO_ALARM")
+	field(ONAM, "Fire Alarm") field(OSV, "MAJOR")
+}
+
+
+record(bi, "SR-PSS-$(DEVICE)-QF2:forceOFF")
+{
+	field(DESC, "QF2 Force OFF from PSS")
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@$(PLC) SR_PSS_QF_OFF")
+	field(RVAL, "0")
+	field(PINI, "YES")
+	field(ZNAM, "Force OFF")   field(ZSV, "MINOR")
+	field(ONAM, "Not Forced to OFF") field(OSV, "NO_ALARM")
+}
+
+record(bi, "SR-PSS-$(DEVICE)-QF2:isInterlocked")
+{
+	field(DESC, "QF2 is intelrock")
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@$(PLC) SR_PSS_QF_INTERLOCK")
+	field(RVAL, "0")
+	field(PINI, "YES")
+	field(ZNAM, "Interlocked")   field(ZSV, "MINOR")
+	field(ONAM, "No Interlock") field(OSV, "NO_ALARM")
+}
+

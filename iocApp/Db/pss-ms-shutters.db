@@ -1,0 +1,37 @@
+record(bi, "I09OH-PSS-PSH:isEnabled")
+{
+	field(DTYP, "EtherIP")
+	field(INP,  "@MS_PSS_PLC OH_PSS_SS.Shutter_Enabled")
+	field(PINI, "YES")
+	field(SCAN, "1 second")
+	field(ZNAM, "Disabled")
+	field(ZSV,  "MAJOR")
+	field(ONAM, "Enabled")
+	field(OSV,  "NO_ALARM")
+}
+
+record(bi, "I09FE-PSS-PSH:isInterlock")
+{
+	field(DTYP, "EtherIP")
+	field(INP,  "@Booster_PSS_PLC MSBL_PSS_FE_PS.INTERLOCK")
+	field(PINI, "YES")
+	field(SCAN, "1 second")
+	field(ZNAM, "Interlock")
+	field(ZSV,  "MAJOR")
+	field(ONAM, "No Interlock")
+	field(OSV,  "NO_ALARM")
+}
+
+record(bi, "I09FE-PSS-PST:isInterlock")
+{
+	field(DTYP, "EtherIP")
+	field(INP,  "@Booster_PSS_PLC MSBL_PSS_FE_BS.INTERLOCK")
+	field(PINI, "YES")
+	field(SCAN, "1 second")
+	field(ZNAM, "Interlock")
+	field(ZSV,  "MAJOR")
+	field(ONAM, "No Interlock")
+	field(OSV,  "NO_ALARM")
+}
+
+

@@ -1,0 +1,14 @@
+iocName: pss-ioc
+
+nodeSelector:
+  labelKey: machine
+  labelValue: pss
+
+image:
+  name: pss-ioc
+  repository: registry.docker.com
+  tag: "latest"
+  pullPolicy: Always
+
+autoRestart: true
+
