@@ -10,7 +10,7 @@ ioc_registerRecordDeviceDriver pdbbase
 
 dbLoadRecords "db/pss.db" "PLC=Booster_PSS_PLC"
 dbLoadRecords "db/pss-interlocks.db"
-dbLoadRecords "db/pss-ms-status.db"
+#dbLoadRecords "db/pss-ms-status.db"
 dbLoadRecords "db/pss-ms-oh-emergency.db"
 dbLoadRecords "db/pss-ms-shutters.db"
 dbLoadRecords "db/pss-ms-emergency.db"
