@@ -35,3 +35,41 @@ record(bi, "I10FE-PSS-PST:isInterlock")
 }
 
 
+record(bi, "I10FE-PSS-PSH:isOpened")
+{
+	field(DTYP, "EtherIP")
+	field(INP,  "@Booster_PSS_PLC BEATSBL_PSS_FE_PS.CLOSED")
+	field(PINI, "YES")
+	field(SCAN, "1 second")
+	field(ZNAM, "OPENED")
+	field(ZSV,  "NO_ALARM")
+	field(ONAM, "CLOSED")
+	field(OSV,  "NO_ALARM")
+}
+
+record(bi, "I10FE-PSS-PST:isOpened")
+{
+	field(DTYP, "EtherIP")
+	field(INP,  "@Booster_PSS_PLC BEATSBL_PSS_FE_BS.CLOSED")
+	field(PINI, "YES")
+	field(SCAN, "1 second")
+	field(ZNAM, "OPENED")
+	field(ZSV,  "NO_ALARM")
+	field(ONAM, "CLOSED")
+	field(OSV,  "NO_ALARM")
+}
+
+record(bi, "I10OH-PSS-PSH:isOpened")
+{
+	field(DTYP, "EtherIP")
+	field(INP,  "@Booster_PSS_PLC BEATSBL_CONSUMED.OH_SAFETY_SHUTTER_CLOSED")
+	field(PINI, "YES")
+	field(SCAN, "1 second")
+	field(ZNAM, "OPENED")
+	field(ZSV,  "NO_ALARM")
+	field(ONAM, "CLOSED")
+	field(OSV,  "NO_ALARM")
+}
+
+
+

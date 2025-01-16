@@ -1,0 +1,36 @@
+record(bi, "I09OH-PSS:isIntrusion")
+{
+	field(DTYP, "EtherIP")
+	field(INP,  "@MS_PSS_PLC OH_Large_PSS_STATE.INTRUSION")
+	field(PINI, "YES")
+	field(SCAN, "1 second")
+	field(ZNAM, "NO_Intrusion")
+	field(ZSV,  "NO_ALARM")
+	field(ONAM, "YES")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "I10OH-PSS:isIntrusion")
+{
+	field(DTYP, "EtherIP")
+	field(INP,  "@BEATS_PSS_PLC OH_PSS_STATE.INTRUSION")
+	field(PINI, "YES")
+	field(SCAN, "1 second")
+	field(ZNAM, "NO_Intrusion")
+	field(ZSV,  "NO_ALARM")
+	field(ONAM, "YES")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "D08OH-PSS:isIntrusion")
+{
+	field(DTYP, "EtherIP")
+	field(INP,  "@XAFS_PSS_PLC OH_PSS_STATE.INTRUSION")
+	field(PINI, "YES")
+	field(SCAN, "1 second")
+	field(ZNAM, "NO_Intrusion")
+	field(ZSV,  "NO_ALARM")
+	field(ONAM, "YES")
+	field(OSV,  "MAJOR")
+}
+

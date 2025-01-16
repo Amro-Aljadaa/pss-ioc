@@ -1,7 +1,7 @@
-record(bi, "I09OH-PSS-PSH:isEnabled")
+record(bi, "I08OH-PSS-PSH:isEnabled")
 {
 	field(DTYP, "EtherIP")
-	field(INP,  "@MS_PSS_PLC OH_PSS_SS.Shutter_Enabled")
+	field(INP,  "@Booster_PSS_PLC XAFSBL_CONSUMED.OH_SAFETY_SHUTTER_ENABLED")
 	field(PINI, "YES")
 	field(SCAN, "1 second")
 	field(ZNAM, "Disabled")
@@ -10,10 +10,10 @@ record(bi, "I09OH-PSS-PSH:isEnabled")
 	field(OSV,  "NO_ALARM")
 }
 
-record(bi, "I09FE-PSS-PSH:isInterlock")
+record(bi, "I08FE-PSS-PSH:isInterlock")
 {
 	field(DTYP, "EtherIP")
-	field(INP,  "@Booster_PSS_PLC MSBL_PSS_FE_PS.INTERLOCK")
+	field(INP,  "@Booster_PSS_PLC XAFSBL_PSS_FE_PS.INTERLOCK")
 	field(PINI, "YES")
 	field(SCAN, "1 second")
 	field(ZNAM, "Interlock")
@@ -22,10 +22,10 @@ record(bi, "I09FE-PSS-PSH:isInterlock")
 	field(OSV,  "NO_ALARM")
 }
 
-record(bi, "I09FE-PSS-PST:isInterlock")
+record(bi, "I08FE-PSS-PST:isInterlock")
 {
 	field(DTYP, "EtherIP")
-	field(INP,  "@Booster_PSS_PLC MSBL_PSS_FE_BS.INTERLOCK")
+	field(INP,  "@Booster_PSS_PLC XAFSBL_PSS_FE_BS.INTERLOCK")
 	field(PINI, "YES")
 	field(SCAN, "1 second")
 	field(ZNAM, "Interlock")
@@ -35,41 +35,41 @@ record(bi, "I09FE-PSS-PST:isInterlock")
 }
 
 
-record(bi, "I09FE-PSS-PSH:isOpened")
+record(bi, "I08FE-PSS-PSH:isOpened")
 {
 	field(DTYP, "EtherIP")
-	field(INP,  "@Booster_PSS_PLC MSBL_PSS_FE_PS.CLOSED")
+	field(INP,  "@Booster_PSS_PLC XAFSBL_PSS_FE_PS.CLOSED")
 	field(PINI, "YES")
 	field(SCAN, "1 second")
-	field(ZNAM, "Opened")
+	field(ZNAM, "OPENED")
 	field(ZSV,  "NO_ALARM")
-	field(ONAM, "Closed")
+	field(ONAM, "CLOSED")
+	field(OSV,  "NO_ALARM")
+}
+
+record(bi, "I08FE-PSS-PST:isOpened")
+{
+	field(DTYP, "EtherIP")
+	field(INP,  "@Booster_PSS_PLC XAFSBL_PSS_FE_BS.CLOSED")
+	field(PINI, "YES")
+	field(SCAN, "1 second")
+	field(ZNAM, "OPENED")
+	field(ZSV,  "NO_ALARM")
+	field(ONAM, "CLOSED")
+	field(OSV,  "NO_ALARM")
+}
+
+record(bi, "I08OH-PSS-PSH:isOpened")
+{
+	field(DTYP, "EtherIP")
+	field(INP,  "@Booster_PSS_PLC XAFSBL_CONSUMED.OH_SAFETY_SHUTTER_CLOSED")
+	field(PINI, "YES")
+	field(SCAN, "1 second")
+	field(ZNAM, "OPENED")
+	field(ZSV,  "NO_ALARM")
+	field(ONAM, "CLOSED")
 	field(OSV,  "NO_ALARM")
 }
 
 
-record(bi, "I09FE-PSS-PST:isOpened")
-{
-	field(DTYP, "EtherIP")
-	field(INP,  "@Booster_PSS_PLC MSBL_PSS_FE_BS.CLOSED")
-	field(PINI, "YES")
-	field(SCAN, "1 second")
-	field(ZNAM, "Opened")
-	field(ZSV,  "NO_ALARM")
-	field(ONAM, "Closed")
-	field(OSV,  "NO_ALARM")
-}
-
-record(bi, "I09OH-PSS-PSH:isOpened")
-{
-	field(DTYP, "EtherIP")
-	field(INP,  "@Booster_PSS_PLC MSBL_CONSUMED.OH_SAFETY_SHUTTER_CLOSED")
-	field(PINI, "YES")
-	field(SCAN, "1 second")
-	field(ZNAM, "Opened")
-	field(ZSV,  "NO_ALARM")
-	field(ONAM, "Closed")
-	field(OSV,  "NO_ALARM")
-}
-
-
+i

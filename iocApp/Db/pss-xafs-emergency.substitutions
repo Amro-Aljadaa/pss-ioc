@@ -1,0 +1,5 @@
+pattern {SYSTEM		TAG}
+	{EM1		OH_PSS_EM1.O1}
+	{EM2		OH_PSS_EM2.O1}
+	{EM3		OH_PSS_EM3.O1}
+	{EM4		OH_PSS_EM7.O1}

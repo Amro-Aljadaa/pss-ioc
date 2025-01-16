@@ -1,0 +1,10 @@
+record(bi, "$(SYSTEM):isAlarm")
+{
+	field(DESC, "Reads Radiation monitors Alarms")
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@Booster_PSS_PLC $(TAG) S 1")
+	field(PINI, "YES")
+	field(ZNAM, "ALARM")    field(ZSV,  "MAJOR")
+	field(ONAM, "NO ALARM") field(OSV,  "NO_ALARM")
+}

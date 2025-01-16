@@ -1,0 +1,12 @@
+record(bi, "I09OH-PSS-$(SYSTEM):isPressed")
+{
+	field(DTYP, "EtherIP")
+	field(INP,  "@MS_PSS_PLC $(TAG)")
+	field(PINI, "YES")
+	field(SCAN, "1 second")
+	field(ZNAM, "Pressed")
+	field(ZSV,  "MAJOR")
+	field(ONAM, "Not Pressed")
+	field(OSV,  "NO_ALARM")
+}
+
