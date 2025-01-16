@@ -9,7 +9,7 @@ include $(TOP)/configure/CONFIG
 DB += pss.db
 DB += pss-interlocks.db
 DB += pss-ms-status.db
-DB += pss-ms-oh-emergency.db
+#DB += pss-ms-oh-emergency.db
 DB += pss-ms-shutters.db
 DB += pss-ms-emergency.db
 DB += pss-beats-shutters.db
